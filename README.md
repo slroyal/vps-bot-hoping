@@ -1,20 +1,22 @@
-git clone https://github.com/Easy-Wire/panel.git
-
-
-cd panel
-bash install.sh
-
-
 apt update && apt upgrade -y
 
-apt install git curl unzip -y
+apt install -y curl apt-transport-https gnupg
 
-curl -sSL https://get.pufferpanel.com | bash
+curl -fsSL https://repos.pufferpanel.com/key.asc | gpg --dearmor -o /usr/share/keyrings/pufferpanel.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/pufferpanel.gpg] https://repos.pufferpanel.com/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/pufferpanel.list
+
+apt update
+apt install -y pufferpanel
+
+systemctl enable pufferpanel
+systemctl start pufferpanel
+
+pufferpanel user add
 
 
+netstat -tuln | grep 8080
 
-git clone https://github.com/Easy-Wire/panel.git
+systemctl restart pufferpanel
 
-cd panel
-
-bash install.sh
+systemctl status pufferpanel
