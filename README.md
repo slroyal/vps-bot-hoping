@@ -20,3 +20,4 @@ netstat -tuln | grep 8080
 systemctl restart pufferpanel
 
 systemctl status pufferpanel
+ping -c 4 google.com
